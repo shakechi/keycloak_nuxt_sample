@@ -75,7 +75,12 @@
           <v-btn color="primary" nuxt to="/inspire"> Continue </v-btn>
         </v-card-actions>
       </v-card>
-      <button @click="$auth.logout()">logout</button>
+      <v-btn color="primary" @click="$auth.login('keycloak')">
+        Login
+      </v-btn>
+      <v-btn color="primary" @click="$auth.logout('keycloak')">
+        Logout
+      </v-btn>
     </v-col>
   </v-row>
 </template>

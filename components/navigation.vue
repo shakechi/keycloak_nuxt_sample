@@ -2,10 +2,11 @@
   <v-navigation-drawer permanent app clipped>
     <v-card class="mx-auto" width="300">
       <v-list>
-        <v-list-item>
-          <v-list-item-title>Home</v-list-item-title>
-        </v-list-item>
-
+        <nuxt-link to="/">
+          <v-list-item>
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item>
+        </nuxt-link>
         <v-list-group :value="true" no-action sub-group>
           <template v-slot:activator>
             <v-list-item-content>
@@ -47,6 +48,7 @@
 <script>
 export default {
   data: () => ({
+    home: ['/'],
     admins: [['page', '/admins/page']],
     users: [
       ['public-page', '/users/public-page'],

@@ -44,7 +44,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'http:localhost:3000'
+    baseURL: 'http://localhost:3000/'
   },
 
   auth: {
@@ -66,7 +66,7 @@ export default {
           logout:
             'http://localhost:8080/auth/realms/test/protocol/openid-connect/logout',
         },
-        logoutRedirectUri:'http:localhost:3000',
+        logoutRedirectUri:'http://localhost:3000/',
         //userinfo_endpoint: false,
         //access_type: 'offline',
         resopnse_type: 'id_token token',
@@ -74,7 +74,7 @@ export default {
         //token_key: 'access_token',
         clientId: 'account',
         scope: ['openid'],
-        redirect_uri:'/login'
+        //redirect_uri:'/login'
       },
 
       // local: {
@@ -111,9 +111,12 @@ export default {
     }
   },
   router: {
-    //middleware: ['auth'],
+    middleware: ['sample'],
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+  // vue: {
+  //   devtools: true
+  // },
 }

@@ -4,3 +4,9 @@
     <h1>(EN)Pages that can only be viewed by administrators</h1>
   </div>
 </template>
+
+<script>
+export default {
+  middleware: 'auth',
+}
+</script>
