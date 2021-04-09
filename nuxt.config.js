@@ -2,6 +2,10 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  ssr:false,
+  
+  target:"static",
+
   head: {
     titleTemplate: '%s - nuxt-keycloak',
     title: 'nuxt-keycloak',
@@ -74,7 +78,7 @@ export default {
         //token_key: 'access_token',
         clientId: 'account',
         scope: ['openid'],
-        //redirect_uri:'/login'
+        redirect_uri:'/admins/page'
       },
 
       // local: {
