@@ -102,6 +102,7 @@
 export default {
   methods: {
     menu_close() {
+      console.log(this.$nuxt.$route.path)
       this.nav_lists.forEach((nav_list) => {
         nav_list.active = false
         if (nav_list.lists2) {
@@ -135,35 +136,35 @@ export default {
           name: 'Getting Started',
           icon: 'mdi-speedometer',
           active: false,
-          link: '',
+          link: '/getting',
           lists2: [
             {
               name: 'Quick Start',
-              link: '/quick-start',
+              link: '/getting/quick-start',
               active: false,
               lists3: [
                 {
                   name: '3',
-                  link: '3',
+                  link: '/getting/quick-start/3',
                 },
                 {
                   name: '4',
-                  link: '4',
+                  link: '/getting/quick-start/4',
                 },
               ],
             },
             {
               name: 'Quick Start2',
-              link: '/quick-start2',
+              link: '/getting/quick-start2',
               active: false,
               lists3: [
                 {
                   name: '3-2',
-                  link: '3-2',
+                  link: '/getting/quick-start2/3-2',
                 },
                 {
                   name: '4-2',
-                  link: '4-2',
+                  link: '/getting/quick-start2/4-2',
                 },
               ],
             },
@@ -183,22 +184,22 @@ export default {
         {
           name: 'Styles & animations',
           icon: 'mdi-palette',
-          link: '',
+          link: '/style',
           active: false,
           lists2: [
             {
               name: 'Colors',
-              link: '/colors',
+              link: '/style/colors',
               active: false,
             },
             {
               name: 'Content',
-              link: '/content',
+              link: '/style/content',
               active: false,
             },
             {
               name: 'Display',
-              link: '/display',
+              link: '/style/display',
               active: false,
             },
           ],
