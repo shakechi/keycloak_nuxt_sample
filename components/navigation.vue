@@ -18,7 +18,6 @@
               v-if="!nav_list.lists2"
               :to="nav_list.link"
               :key="nav_list.name"
-              v-model="nav_list.active"
               @click="menu_close"
             >
               <v-list-item-icon>
@@ -50,7 +49,6 @@
                   v-if="!list2.lists3"
                   :key="list2.name"
                   :to="list2.link"
-                  v-model="list2.active"
                   @click="menu_close"
                 >
                   <v-list-item-content>
@@ -61,9 +59,9 @@
                   v-else
                   :key="list2.name"
                   :prepend-icon="list2.lists3 ? undefined : ''"
+                  v-model="list2.active"
                   no-action
                   sub-group
-                  v-model="list2.active"
                 >
                   <template v-slot:activator>
                     <v-list-item-content>
@@ -103,25 +101,31 @@
 <script>
 export default {
   methods: {
-    // menu_close() {
-    //   this.nav_lists.forEach((nav_list) => {
-    //     nav_list.active = false
-    //     nav_list.lists2.forEach((list2)=>{
-    //       console.log("list2")
-    //       console.log(list2.name)
-    //       list2.active = false
-    //     })
-    //   })
-    // },
-    menu_close(){
-      console.log("menu_closeが呼ばれました")
-      for (const list1 of this.nav_lists){
-        list1.active=false
-        for (const list2 of list1){
-          console.log(list2)
+    menu_close() {
+      this.nav_lists.forEach((nav_list) => {
+        nav_list.active = false
+        if (nav_list.lists2) {
+          nav_list.lists2.forEach((list2) => {
+            list2.active = false
+          })
         }
-      }
-    }
+
+        // for (let list2 of Object.keys(nav_list.list2)) {
+        //   console.log(list2)
+        // if (list2 === 'active') {
+        //   list2 = false
+        // }
+      })
+    },
+    // menu_close() {
+    //   console.log('menu_closeが呼ばれました')
+    //   for (let list1 of this.nav_lists) {
+    //     list1.active = false
+    //     for (let list2 of list1) {
+    //       console.log(list2)
+    //     }
+    //   }
+    // },
   },
   data() {
     return {
@@ -166,7 +170,7 @@ export default {
             {
               name: 'Pre-made layouts',
               link: '/pre-made-layouts',
-              active:false,
+              active: false,
             },
           ],
         },
@@ -174,7 +178,7 @@ export default {
           name: 'Customization',
           icon: 'mdi-cogs',
           link: '/customization',
-          active:false,
+          active: false,
         },
         {
           name: 'Styles & animations',
@@ -185,17 +189,17 @@ export default {
             {
               name: 'Colors',
               link: '/colors',
-              active:false,
+              active: false,
             },
             {
               name: 'Content',
               link: '/content',
-              active:false,
+              active: false,
             },
             {
               name: 'Display',
               link: '/display',
-              active:false,
+              active: false,
             },
           ],
         },
@@ -203,7 +207,7 @@ export default {
           name: 'Preminum themes',
           icon: 'mdi-vuetify',
           link: '/preminum_themes',
-          active:false,
+          active: false,
         },
       ],
     }
