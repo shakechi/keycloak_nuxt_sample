@@ -18,6 +18,7 @@
               v-if="!nav_list.lists2"
               :to="nav_list.link"
               :key="nav_list.name"
+              v-model="nav_list.active"
               @click="menu_close"
             >
               <v-list-item-icon>
@@ -49,6 +50,7 @@
                   v-if="!list2.lists3"
                   :key="list2.name"
                   :to="list2.link"
+                  v-model="list2.active"
                   @click="menu_close"
                 >
                   <v-list-item-content>
@@ -73,6 +75,7 @@
                     v-for="list3 in list2.lists3"
                     :key="list3.name"
                     :to="list3.link"
+                    v-model="list3.active"
                     @click="menu_close"
                   >
                     <v-list-item-content>
@@ -103,13 +106,30 @@ export default {
   methods: {
     menu_close() {
       console.log(this.$nuxt.$route.path)
+      const url = this.$nuxt.$route.path + "/"
+
       this.nav_lists.forEach((nav_list) => {
+        if(!url.indexOf(nav_list.link+"/")) {
+          console.log(url,nav_list.link)
+          return
+        }
         nav_list.active = false
-        if (nav_list.lists2) {
-          nav_list.lists2.forEach((list2) => {
-            list2.active = false
+        // console.log(nav_list)
+        // console.log(nav_list.name,nav_list.lists2)
+        if(nav_list.lists2 !== undefined){
+          nav_list.lists2.forEach((list2)=>{
+            if(!url.indexOf(list2.link+"/")) {
+              console.log(url,list2.link)
+              return
+            }
+            if(list2.lists3 !== undefined){
+              list2.active = false
+            }
           })
         }
+        // for (let list2 in nav_list){
+        //   console.log(list2)
+        // }
 
         // for (let list2 of Object.keys(nav_list.list2)) {
         //   console.log(list2)
@@ -146,10 +166,12 @@ export default {
                 {
                   name: '3',
                   link: '/getting/quick-start/3',
+                  active:false,
                 },
                 {
                   name: '4',
                   link: '/getting/quick-start/4',
+                  active:false,
                 },
               ],
             },
@@ -161,10 +183,12 @@ export default {
                 {
                   name: '3-2',
                   link: '/getting/quick-start2/3-2',
+                  active:false,
                 },
                 {
                   name: '4-2',
                   link: '/getting/quick-start2/4-2',
+                  active:false,
                 },
               ],
             },
